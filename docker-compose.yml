@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sql2er-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - BACKEND_HOST=0.0.0.0
+      - BACKEND_PORT=8000
+      - ENVIRONMENT=production
+      - DEBUG=False
+      - ALLOWED_ORIGINS=*
+    volumes:
+      - ./exports:/app/exports
+      - ./database:/app/database
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sql2er-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  postgres-demo:
+    image: postgres:16-alpine
+    container_name: sql2er-postgres-demo
+    environment:
+      POSTGRES_USER: sql2er_user
+      POSTGRES_PASSWORD: sql2er_password
+      POSTGRES_DB: sql2er_demo
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+

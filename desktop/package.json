@@ -1,0 +1,30 @@
+{
+  "name": "sql2er-studio-desktop",
+  "version": "1.0.0",
+  "description": "SQL2ER Studio - Interactive SQL to Entity Relationship Diagramming & Database Intelligence",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [
+    "sql",
+    "er-diagram",
+    "database",
+    "schema",
+    "diagramming",
+    "electron"
+  ],
+  "author": "SQL2ER Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "axios": "^1.7.9"
+  }
+}
+

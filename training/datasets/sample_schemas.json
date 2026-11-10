@@ -1,0 +1,24 @@
+[
+  {
+    "domain": "ecommerce",
+    "description": "Multi-vendor marketplace schema with buyers, sellers, inventory, orders, and shipments.",
+    "tables_count": 6,
+    "relationships_count": 7,
+    "sql": "CREATE TABLE sellers (id INT PRIMARY KEY, name VARCHAR(100)); CREATE TABLE items (id INT PRIMARY KEY, seller_id INT REFERENCES sellers(id), price DECIMAL(10,2));"
+  },
+  {
+    "domain": "healthcare",
+    "description": "Hospital patient management, appointments, doctors, and medical records.",
+    "tables_count": 5,
+    "relationships_count": 6,
+    "sql": "CREATE TABLE patients (id INT PRIMARY KEY, full_name VARCHAR(120), dob DATE); CREATE TABLE doctors (id INT PRIMARY KEY, full_name VARCHAR(120), specialty VARCHAR(80)); CREATE TABLE appointments (id INT PRIMARY KEY, patient_id INT REFERENCES patients(id), doctor_id INT REFERENCES doctors(id), scheduled_for TIMESTAMP);"
+  },
+  {
+    "domain": "university",
+    "description": "Academic system with courses, students, professors, and enrollments.",
+    "tables_count": 4,
+    "relationships_count": 4,
+    "sql": "CREATE TABLE students (id INT PRIMARY KEY, name VARCHAR(100)); CREATE TABLE courses (id INT PRIMARY KEY, title VARCHAR(100), credits INT); CREATE TABLE enrollments (student_id INT, course_id INT, grade VARCHAR(2), PRIMARY KEY(student_id, course_id), FOREIGN KEY(student_id) REFERENCES students(id), FOREIGN KEY(course_id) REFERENCES courses(id));"
+  }
+]
+
